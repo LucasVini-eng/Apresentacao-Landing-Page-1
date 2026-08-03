@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Cell - Assistência Técnica Especializada | Celulares, Computadores e Tablets</title>
+
+    <!-- Google Fonts: Inter e Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --brand-blue: #0066FF;
+            --brand-blue-hover: #0052CC;
+            --brand-cyan: #00D2FF;
+            --brand-dark: #0A192F;
+            --brand-darker: #050C1A;
+            --brand-card-bg: #112240;
+            --brand-light: #F8FAFC;
+            --brand-gray: #64748B;
+            --brand-border: rgba(0, 102, 255, 0.15);
+            --brand-shadow: 0 10px 30px -10px rgba(0, 102, 255, 0.25);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-darker);
+            color: #E2E8F0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, .font-title {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Glassmorphism Header Sticky */
+        .navbar-custom {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--brand-border);
+            transition: all 0.3s ease;
+            padding: 0.8rem 0;
+        }
+
+        .navbar-custom.scrolled {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link {
+            color: #CBD5E1 !important;
+            font-weight: 500;
+            margin: 0 0.4rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--brand-cyan) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Estilização da Logo em SVG Inline para alta qualidade */
+        .brand-logo-img {
+            height: 48px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand:hover .brand-logo-img {
+            transform: scale(1.05);
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 210, 255, 0.12) 0%, rgba(0, 102, 255, 0.08) 40%, rgba(5, 12, 26, 1) 100%);
+            overflow: hidden;
+            padding: 120px 0 80px 0;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--brand-cyan) 50%, var(--brand-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(0, 102, 255, 0.12);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            color: var(--brand-cyan);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-brand-primary {
+            background: linear-gradient(135deg, var(--brand-blue) 0%, #0044BB 100%);
+            color: #FFFFFF;
+            font-weight: 700;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-brand-primary:hover {
+            background: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-blue) 100%);
+            color: #0A192F;
+            box-shadow: 0 10px 28px rgba(0, 210, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-brand-outline {
+            background: rgba(255, 255, 255, 0.03);
+            color: #FFFFFF;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 28px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-brand-outline:hover {
+            background: rgba(0, 102, 255, 0.15);
+            border-color: var(--brand-cyan);
+            color: var(--brand-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Seção de Cards dos Serviços */
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .card-service {
+            background: var(--brand-card-bg);
+            border: 1px solid var(--brand-border);
+            border-radius: 18px;
+            padding: 2.2rem 1.8rem;
+            height: 100%;
+            transition: all 0.35 ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-service:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 210, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .card-service:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 210, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--brand-cyan);
+            font-size: 1.8rem;
+        }
+
+        .capture-card {
+            background: linear-gradient(145deg, rgba(17, 34, 64, 0.95), rgba(10, 25, 47, 0.98));
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-control, .form-select {
+            background-color: rgba(5, 12, 26, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFFFFF !important;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(5, 12, 26, 0.9);
+            border-color: var(--brand-cyan);
+            box-shadow: 0 0 0 0.25rem rgba(0, 210, 255, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #64748B;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 34px;
+            box-shadow: 0px 8px 25px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12) rotate(6deg);
+            color: #FFF;
+            box-shadow: 0px 12px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(37, 211, 102, 0.4);
+            animation: pulse-ring 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.4); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--brand-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-box {
+            background: var(--brand-card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--brand-border);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #030811;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 70px 0 30px 0;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-right: 8px;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: var(--brand-blue);
+            color: #FFF;
+            transform: translateY(-3px);
+            border-color: var(--brand-cyan);
+        }
+
+        /* Diferenciais Badge list */
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--brand-cyan);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Requisito 1: Cabeçalho com logo, nome "Conecta Cell", menu e botão agendar -->
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="mainNavbar">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+                    <!-- SVG personalizado reproduzindo com fidelidade o logotipo Conecta Cell -->
+                    <svg class="brand-logo-img" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="120" cy="120" r="112" stroke="#0066FF" stroke-width="5" fill="#FFFFFF"/>
+                        <circle cx="120" cy="120" r="102" stroke="#0A192F" stroke-width="2"/>
+                        <!-- Ícone 'C' em Nós/Circuitos Tech -->
+                        <path d="M 140 60 C 90 50 50 80 50 120 C 50 160 90 190 140 180" stroke="#0066FF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <!-- Conexões e nós -->
+                        <circle cx="140" cy="60" r="7" fill="#0066FF"/>
+                        <circle cx="110" cy="55" r="5" fill="#00D2FF"/>
+                        <circle cx="80" cy="75" r="6" fill="#0A192F"/>
+                        <circle cx="55" cy="100" r="5" fill="#0066FF"/>
+                        <circle cx="70" cy="125" r="10" fill="none" stroke="#0066FF" stroke-width="4"/>
+                        <circle cx="55" cy="145" r="6" fill="#0A192F"/>
+                        <circle cx="80" cy="170" r="8" fill="#0A192F"/>
+                        <circle cx="115" cy="185" r="6" fill="#0066FF"/>
+                        <circle cx="145" cy="175" r="6" fill="#0A192F"/>
+                        <circle cx="160" cy="145" r="5" fill="#0A192F"/>
+                        <line x1="140" y1="60" x2="110" y2="55" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="110" y1="55" x2="80" y2="75" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="80" y1="75" x2="55" y2="100" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="55" y1="100" x2="70" y2="125" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="70" y1="125" x2="55" y2="145" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="55" y1="145" x2="80" y2="170" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="80" y1="170" x2="115" y2="185" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="115" y1="185" x2="145" y2="175" stroke="#0066FF" stroke-width="2"/>
+                        <line x1="145" y1="175" x2="160" y2="145" stroke="#0A192F" stroke-width="2"/>
+                    </svg>
+                    <div class="d-flex flex-column leading-none">
+                        <span class="fw-bold fs-4 text-white font-title lh-1">Conecta <span style="color: var(--brand-blue);">Cell</span></span>
+                        <small style="font-size: 0.62rem; letter-spacing: 1.5px; color: #94A3B8;" class="fw-semibold text-uppercase">Conecta Você à Tecnologia</small>
+                    </div>
+                </a>
+
+                <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-1"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-menu navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#empresa">Empresa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#localizacao">Localização</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    </ul>
+                    <div class="ms-lg-3 mt-3 mt-lg-0">
+                        <a href="#agendamento" class="btn btn-brand-primary btn-sm px-4 py-2">
+                            <i class="bi bi-calendar-check me-2"></i>Agendar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Requisito 3: Banner atraente e inovador -->
+    <section id="inicio" class="hero-section">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container hero-content">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge">
+                        <i class="bi bi-lightning-charge-fill text-warning"></i>
+                        <span>Atendimento Express & Garantia Especializada</span>
+                    </div>
+                    <h1 class="display-4 fw-black text-white mb-3">
+                        Seu Dispositivo Novo de Novo com a <span class="text-gradient">Conecta Cell</span>
+                    </h1>
+                    <p class="lead text-slate-300 mb-4 me-lg-4" style="color: #CBD5E1; font-size: 1.15rem;">
+                        Assistência técnica de alta precisão especializada em <strong>Celulares, Notebooks, MacBooks e Tablets</strong>. Diagnóstico rápido, peças de padrão original e garantia completa para você não perder tempo.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Conecta%20Cell%20e%20gostaria%20de%20um%20or%C3%A7amento%20r%C3%A1pido." target="_blank" class="btn btn-brand-primary">
+                            <i class="bi bi-whatsapp me-2 fs-5"></i> Orçamento via WhatsApp
+                        </a>
+                        <a href="#agendamento" class="btn btn-brand-outline">
+                            <i class="bi bi-tools me-2"></i> Simular Reparo
+                        </a>
+                    </div>
+
+                    <!-- Destaques rápidos -->
+                    <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                        <div class="col-4">
+                            <h4 class="fw-bold text-gradient mb-0">90 Dias</h4>
+                            <small class="text-slate-400" style="color: #94A3B8;">Garantia Total</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold text-gradient mb-0">30 Min</h4>
+                            <small class="text-slate-400" style="color: #94A3B8;">Reparos Express</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold text-gradient mb-0">100%</h4>
+                            <small class="text-slate-400" style="color: #94A3B8;">Peças Testadas</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Interativo de Orçamento no Banner -->
+                <div class="col-lg-5">
+                    <div class="capture-card p-4 p-md-5">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="service-icon-wrapper mb-0" style="width: 48px; height: 48px; font-size: 1.3rem;">
+                                <i class="bi bi-calculator"></i>
+                            </div>
+                            <div>
+                                <h3 class="h5 fw-bold text-white mb-0">Orçamento Instantâneo</h3>
+                                <small class="text-info">Receba a estimativa no WhatsApp</small>
+                            </div>
+                        </div>
+
+                        <form id="heroQuickForm" onsubmit="handleHeroQuickSubmit(event)">
+                            <div class="mb-3">
+                                <label class="form-label small text-uppercase text-slate-300 fw-bold">Selecione seu aparelho</label>
+                                <select class="form-select" id="heroDevice" required>
+                                    <option value="" selected disabled>Escolha o dispositivo...</option>
+                                    <option value="iPhone / Smartphone">Smartphone (iPhone / Android)</option>
+                                    <option value="Notebook / Laptop">Notebook / Computador</option>
+                                    <option value="Tablet / iPad">Tablet / iPad</option>
+                                    <option value="Outro Dispositivo">Outro Equipamento</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small text-uppercase text-slate-300 fw-bold">Qual o problema?</label>
+                                <select class="form-select" id="heroIssue" required>
+                                    <option value="" selected disabled>Selecione o defeito...</option>
+                                    <option value="Tela Quebrada / Sem Imagem">Tela Quebrada / Touch falhando</option>
+                                    <option value="Bateria Viciada / Não Carrega">Bateria Descarregando Rápido</option>
+                                    <option value="Aparelho Molhou">Aparelho Molhou / Não Liga</option>
+                                    <option value="Lento / Reformatar">Computador Lento / Formatação</option>
+                                    <option value="Reparo em Placa / Conector">Reparo de Placa / Conector</option>
+                                    <option value="Outro Defeito">Outro Problema</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small text-uppercase text-slate-300 fw-bold">Seu Nome</label>
+                                <input type="text" class="form-control" id="heroName" placeholder="Como podemos te chamar?" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-brand-primary w-100 py-3 fw-bold">
+                                <i class="bi bi-send-fill me-2"></i> Solicitar Orçamento Grátis
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisito 4: Seção de cards dos serviços -->
+    <section id="servicos" class="section-padding" style="background-color: var(--brand-dark);">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="badge bg-primary bg-opacity-20 text-info px-3 py-2 rounded-pill fw-semibold text-uppercase mb-2">Soluções Completas</span>
+                <h2 class="display-6 fw-bold text-white">Nossos Serviços Especializados</h2>
+                <p class="text-slate-400" style="color: #94A3B8;">Reparos avançados realizados por técnicos certificados com maquinário de última geração.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Card 1: Smartphones -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Assistência para Smartphones</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Especialistas em iPhone, Samsung, Xiaomi e Motorola. Troca de tela display, baterias, conector de carga, tampas traseiras e periféricos.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Troca de tela em até 40 min</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Baterias com selo de qualidade</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Desoxidação completa</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20meu%20Smartphone." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Notebooks e Computadores -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Computadores & Notebooks</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Manutenção preventiva e corretiva para PC Desktop, Notebooks e MacBooks. Upgrade de SSD High-Speed e memória RAM.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Formatação com Backup Seguro</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Limpeza Térmica & Pasta de Prata</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Troca de Teclados e Telas</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20meu%20Notebook/PC." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Tablets & iPads -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-tablet"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Tablets & iPads</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Conserto especializado para iPads e tablets Android. Troca de vidro, digitalizador touch, botões e restauração de firmware.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Substituição de vidro laminado</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Reparo de entrada de energia</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Troca de Bateria selada</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20meu%20Tablet/iPad." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Microsoldagem de Placas -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Microsoldagem em Placa</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Laboratório de microsoldagem para recuperar placas-mãe condenadas por outras assistências. Diagnóstico avançado por infravermelho.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Reparo de PMIC e Carga</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Recuperação de curto-circuito</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Reballing de CIs</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Preciso%20de%20reparo%20avana%C3%A7ado%20em%20placa." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Recuperação de Dados -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-hdd-network"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Recuperação de Dados</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Resgate profissional de fotos, arquivos e documentos de HDs danificados, SSDs, Pendrives e Celulares com tela queimada.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Sigilo e Confidencialidade</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Recuperação pós-formatação</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Extração de dados de placas mortas</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Preciso%20recuperar%20dados%20do%20meu%20dispositivo." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6: Serviço Leva e Traz -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-service">
+                        <div class="service-icon-wrapper">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">Serviço Leva & Traz</h3>
+                        <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                            Sem tempo para vir à loja? Buscamos seu dispositivo no conforto do seu endereço com total segurança e protocolo de recolhimento.
+                        </p>
+                        <ul class="list-unstyled small text-slate-400 mb-4 gap-2 d-flex flex-column" style="color: #94A3B8;">
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Atendimento em Maceió & Região</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Transporte Seguro em Bag Pro</li>
+                            <li><i class="bi bi-check2-circle text-info me-2"></i>Comprovante de Retirada na Hora</li>
+                        </ul>
+                        <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20Leva%20e%20Traz." target="_blank" class="text-decoration-none fw-semibold" style="color: var(--brand-cyan);">
+                            Consultar este serviço <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisito 1 & 8: Apresentação da Empresa e Paleta de Cores -->
+    <section id="empresa" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <div class="p-4 p-md-5 rounded-4 border border-primary border-opacity-25" style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(10, 25, 47, 0.9));">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <svg class="brand-logo-img" style="height: 64px;" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="120" cy="120" r="112" stroke="#0066FF" stroke-width="5" fill="#FFFFFF"/>
+                                    <circle cx="120" cy="120" r="102" stroke="#0A192F" stroke-width="2"/>
+                                    <path d="M 140 60 C 90 50 50 80 50 120 C 50 160 90 190 140 180" stroke="#0066FF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                    <circle cx="140" cy="60" r="7" fill="#0066FF"/>
+                                    <circle cx="110" cy="55" r="5" fill="#00D2FF"/>
+                                    <circle cx="80" cy="75" r="6" fill="#0A192F"/>
+                                    <circle cx="55" cy="100" r="5" fill="#0066FF"/>
+                                    <circle cx="70" cy="125" r="10" fill="none" stroke="#0066FF" stroke-width="4"/>
+                                    <circle cx="55" cy="145" r="6" fill="#0A192F"/>
+                                    <circle cx="80" cy="170" r="8" fill="#0A192F"/>
+                                    <circle cx="115" cy="185" r="6" fill="#0066FF"/>
+                                    <circle cx="145" cy="175" r="6" fill="#0A192F"/>
+                                    <circle cx="160" cy="145" r="5" fill="#0A192F"/>
+                                    <line x1="140" y1="60" x2="110" y2="55" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="110" y1="55" x2="80" y2="75" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="80" y1="75" x2="55" y2="100" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="55" y1="100" x2="70" y2="125" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="70" y1="125" x2="55" y2="145" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="55" y1="145" x2="80" y2="170" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="80" y1="170" x2="115" y2="185" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="115" y1="185" x2="145" y2="175" stroke="#0066FF" stroke-width="2"/>
+                                    <line x1="145" y1="175" x2="160" y2="145" stroke="#0A192F" stroke-width="2"/>
+                                </svg>
+                                <div>
+                                    <h3 class="h4 fw-bold text-white mb-0">Conecta Cell</h3>
+                                    <span class="text-cyan small fw-semibold" style="color: var(--brand-cyan);">Assistência Técnica Especializada</span>
+                                </div>
+                            </div>
+                            <blockquote class="blockquote mb-0" style="color: #CBD5E1; font-size: 1.05rem; font-style: italic;">
+                                "Nossa missão é conectar você de volta à sua rotina digital com velocidade, transparência ética e a mais avançada engenharia de reparos da região."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <span class="badge bg-primary bg-opacity-20 text-info px-3 py-2 rounded-pill fw-semibold text-uppercase mb-2">Por que nos escolher</span>
+                    <h2 class="display-6 fw-bold text-white mb-4">Excelência Técnica e Respeito pelo Seu Equipamento</h2>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+                        <div>
+                            <h4 class="h6 fw-bold text-white mb-1">Garantia Formal de 90 Dias</h4>
+                            <p class="small text-slate-400 mb-0" style="color: #94A3B8;">Todos os nossos serviços contam com ordem de serviço documentada e garantia por escrito.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-tools"></i></div>
+                        <div>
+                            <h4 class="h6 fw-bold text-white mb-1">Laboratório ESD Próprio</h4>
+                            <p class="small text-slate-400 mb-0" style="color: #94A3B8;">Bancadas protegidas contra descargas eletrostáticas, mantendo a integridade dos microcomponentes.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-clock-history"></i></div>
+                        <div>
+                            <h4 class="h6 fw-bold text-white mb-1">Agilidade Sem Enrompação</h4>
+                            <p class="small text-slate-400 mb-0" style="color: #94A3B8;">Mais de 80% dos reparos de telas e baterias são efetuados no mesmo dia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisito 5: Seção de captação do cliente -->
+    <section id="agendamento" class="section-padding" style="background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.15) 0%, rgba(5, 12, 26, 1) 100%);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="capture-card">
+                        <div class="row gy-4 align-items-center">
+                            <div class="col-lg-5">
+                                <span class="badge bg-info bg-opacity-20 text-info px-3 py-2 rounded-pill fw-semibold text-uppercase mb-3">Atendimento Preferencial</span>
+                                <h2 class="h2 fw-bold text-white mb-3">Agende Seu Atendimento ou Solicite Orçamento</h2>
+                                <p class="text-slate-300 small mb-4" style="color: #CBD5E1;">
+                                    Preencha o formulário para garantir atendimento prioritário sem filas na loja ou agendar a coleta via Leva & Traz.
+                                </p>
+
+                                <div class="d-flex flex-column gap-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary bg-opacity-20 p-2 text-info">
+                                            <i class="bi bi-check-lg fs-5"></i>
+                                        </div>
+                                        <span class="small text-white">Diagnóstico Gratuito na Loja</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary bg-opacity-20 p-2 text-info">
+                                            <i class="bi bi-check-lg fs-5"></i>
+                                        </div>
+                                        <span class="small text-white">Peças de Qualidade Premium AAA</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary bg-opacity-20 p-2 text-info">
+                                            <i class="bi bi-check-lg fs-5"></i>
+                                        </div>
+                                        <span class="small text-white">Pagamento Facilitado no Cartão</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <form id="captureClientForm" onsubmit="handleCaptureForm(event)">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-white fw-semibold">Nome Completo *</label>
+                                            <input type="text" class="form-control" id="leadName" placeholder="Ex: Maria Silva" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-white fw-semibold">Telefone / WhatsApp *</label>
+                                            <input type="tel" class="form-control" id="leadPhone" placeholder="(82) 99999-9999" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-white fw-semibold">Tipo de Equipamento *</label>
+                                            <select class="form-select" id="leadDevice" required>
+                                                <option value="" selected disabled>Selecione...</option>
+                                                <option value="Celular / Smartphone">Celular / Smartphone</option>
+                                                <option value="Notebook / Laptop">Notebook / Laptop</option>
+                                                <option value="Tablet / iPad">Tablet / iPad</option>
+                                                <option value="Computador Desktop">Computador Desktop</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-white fw-semibold">Marca & Modelo</label>
+                                            <input type="text" class="form-control" id="leadModel" placeholder="Ex: iPhone 13, Dell Inspiron...">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label small text-white fw-semibold">Descreva o Problema</label>
+                                            <textarea class="form-control" id="leadDescription" rows="3" placeholder="Conte-nos o que aconteceu com o aparelho..."></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="leadLevaTraz">
+                                                <label class="form-check-label small text-slate-300" for="leadLevaTraz">
+                                                    Desejo solicitar o serviço de busca e entrega (Leva & Traz)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn btn-brand-primary w-100 py-3 text-uppercase fw-bold letter-spacing-1">
+                                                <i class="bi bi-calendar-event me-2"></i> Confirmar Agendamento / Solicitar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisito 6: Localização -->
+    <section id="localizacao" class="section-padding" style="background-color: var(--brand-dark);">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-5">
+                    <span class="badge bg-primary bg-opacity-20 text-info px-3 py-2 rounded-pill fw-semibold text-uppercase mb-2">Venha nos Visitar</span>
+                    <h2 class="display-6 fw-bold text-white mb-4">Nossa Localização</h2>
+                    
+                    <div class="info-box d-flex gap-3 align-items-start">
+                        <div class="text-info fs-3"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div>
+                            <h5 class="fw-bold text-white mb-1">Endereço Principal</h5>
+                            <p class="small text-slate-300 mb-0" style="color: #CBD5E1;">
+                                Av. Fernandes Lima, Farol - Maceió, Alagoas<br>
+                                <span class="text-slate-400" style="color: #94A3B8;">(Próximo aos principais pontos comerciais da cidade)</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info-box d-flex gap-3 align-items-start">
+                        <div class="text-info fs-3"><i class="bi bi-clock-fill"></i></div>
+                        <div>
+                            <h5 class="fw-bold text-white mb-1">Horário de Funcionamento</h5>
+                            <p class="small text-slate-300 mb-0" style="color: #CBD5E1;">
+                                Seg - Sexta: 08:00 às 18:00<br>
+                                Sábado: 08:00 às 12:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info-box d-flex gap-3 align-items-start">
+                        <div class="text-info fs-3"><i class="bi bi-telephone-fill"></i></div>
+                        <div>
+                            <h5 class="fw-bold text-white mb-1">Contato Direto</h5>
+                            <p class="small text-slate-300 mb-0" style="color: #CBD5E1;">
+                                WhatsApp / Fone: (82) 99126-0066<br>
+                                Atendimento Rápido e Humanizado
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="map-container" style="height: 420px;">
+                        <!-- Embed do Google Maps focado na localização em Maceió - AL -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.203875503079!2d-35.7388703240212!3d-9.646274490442378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x70145a8df241cb3%3A0x6b8296a297e597c2!2sAv.%20Fernandes%20Lima%20-%20Macei%C3%B3%2C%20AL!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisito 2: Botão flutuante para o WhatsApp "5582991260066" -->
+    <a href="https://wa.me/5582991260066?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Conecta%20Cell%20e%20gostaria%20de%20atendimento." 
+       target="_blank" 
+       class="whatsapp-float" 
+       aria-label="Fale conosco no WhatsApp"
+       title="Falar com Técnico no WhatsApp">
+        <div class="whatsapp-pulse"></div>
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Requisito 7: Footer com logo, redes sociais e contatos -->
+    <footer id="contato" class="footer">
+        <div class="container">
+            <div class="row gy-4 mb-5">
+                <!-- Coluna 1: Logo e Descrição -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <svg class="brand-logo-img" style="height: 42px;" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="120" cy="120" r="112" stroke="#0066FF" stroke-width="5" fill="#FFFFFF"/>
+                            <circle cx="120" cy="120" r="102" stroke="#0A192F" stroke-width="2"/>
+                            <path d="M 140 60 C 90 50 50 80 50 120 C 50 160 90 190 140 180" stroke="#0066FF" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            <circle cx="140" cy="60" r="7" fill="#0066FF"/>
+                            <circle cx="110" cy="55" r="5" fill="#00D2FF"/>
+                            <circle cx="80" cy="75" r="6" fill="#0A192F"/>
+                            <circle cx="55" cy="100" r="5" fill="#0066FF"/>
+                            <circle cx="70" cy="125" r="10" fill="none" stroke="#0066FF" stroke-width="4"/>
+                            <circle cx="55" cy="145" r="6" fill="#0A192F"/>
+                            <circle cx="80" cy="170" r="8" fill="#0A192F"/>
+                            <circle cx="115" cy="185" r="6" fill="#0066FF"/>
+                            <circle cx="145" cy="175" r="6" fill="#0A192F"/>
+                            <circle cx="160" cy="145" r="5" fill="#0A192F"/>
+                            <line x1="140" y1="60" x2="110" y2="55" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="110" y1="55" x2="80" y2="75" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="80" y1="75" x2="55" y2="100" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="55" y1="100" x2="70" y2="125" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="70" y1="125" x2="55" y2="145" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="55" y1="145" x2="80" y2="170" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="80" y1="170" x2="115" y2="185" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="115" y1="185" x2="145" y2="175" stroke="#0066FF" stroke-width="2"/>
+                            <line x1="145" y1="175" x2="160" y2="145" stroke="#0A192F" stroke-width="2"/>
+                        </svg>
+                        <span class="fw-bold fs-4 text-white font-title">Conecta <span style="color: var(--brand-blue);">Cell</span></span>
+                    </div>
+                    <p class="small text-slate-400 mb-4" style="color: #94A3B8;">
+                        Sua assistência técnica de confiança em Maceió. Transparência, peças de alta qualidade e técnicos qualificados para consertar seu celular, computador ou tablet.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://wa.me/5582991260066" target="_blank" class="social-btn" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://google.com" target="_blank" class="social-btn" title="Avaliações Google"><i class="bi bi-google"></i></a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold text-white mb-3">Links Rápidos</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#inicio" class="text-decoration-none text-slate-400" style="color: #94A3B8;">Início</a></li>
+                        <li><a href="#servicos" class="text-decoration-none text-slate-400" style="color: #94A3B8;">Nossos Serviços</a></li>
+                        <li><a href="#empresa" class="text-decoration-none text-slate-400" style="color: #94A3B8;">Sobre a Empresa</a></li>
+                        <li><a href="#agendamento" class="text-decoration-none text-slate-400" style="color: #94A3B8;">Agendar Reparo</a></li>
+                        <li><a href="#localizacao" class="text-decoration-none text-slate-400" style="color: #94A3B8;">Localização</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Serviços -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold text-white mb-3">Especialidades</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small" style="color: #94A3B8;">
+                        <li>Troca de Tela & Display iPhone/Android</li>
+                        <li>Substituição de Bateria de Alta Saúde</li>
+                        <li>Reparo Avançado de Placa Mãe (SMD/BGA)</li>
+                        <li>Formatação e Upgrade SSD em Notebooks</li>
+                        <li>Recuperação de Aparelhos Molhados</li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Contatos Rápidos -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold text-white mb-3">Fale Conosco</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small" style="color: #94A3B8;">
+                        <li><i class="bi bi-whatsapp text-info me-2"></i> (82) 99126-0066</li>
+                        <li><i class="bi bi-envelope text-info me-2"></i> contato@conectacell.com.br</li>
+                        <li><i class="bi bi-geo-alt text-info me-2"></i> Av. Fernandes Lima, Maceió - AL</li>
+                        <li><i class="bi bi-clock text-info me-2"></i> Seg a Sáb: 08h às 18h / 12h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 pt-3 small" style="color: #64748B;">
+                <p class="mb-0">&copy; <span id="currentYear"></span> Conecta Cell. Todos os direitos reservados.</p>
+                <p class="mb-0">Conecta Você à Tecnologia com Segurança e Qualidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmação para Formulários -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: var(--brand-dark); border: 1px solid var(--brand-cyan); color: white;">
+                <div class="modal-body text-center p-4 p-md-5">
+                    <div class="text-success mb-3">
+                        <i class="bi bi-check-circle-fill display-1" style="color: var(--brand-cyan);"></i>
+                    </div>
+                    <h3 class="fw-bold text-white mb-2">Solicitação Recebida!</h3>
+                    <p class="text-slate-300 small mb-4" id="modalMessage" style="color: #CBD5E1;">
+                        Você será redirecionado para o nosso WhatsApp para atendimento imediato.
+                    </p>
+                    <button type="button" class="btn btn-brand-primary px-4 py-2" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Atualiza ano no footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Sombra no Navbar ao rolar a página
+            const navbar = document.getElementById('mainNavbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Efeito de partículas da constelação do Banner Hero (inspirado na logo com nós 'C')
+            const canvas = document.getElementById('hero-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width = canvas.width = canvas.offsetWidth;
+                let height = canvas.height = canvas.offsetHeight;
+
+                window.addEventListener('resize', () => {
+                    width = canvas.width = canvas.offsetWidth;
+                    height = canvas.height = canvas.offsetHeight;
+                });
+
+                const particles = [];
+                const particleCount = Math.floor(width / 25);
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        radius: Math.random() * 2.5 + 1.5,
+                        color: Math.random() > 0.4 ? '#0066FF' : '#00D2FF'
+                    });
+                }
+
+                function animateCanvas() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    // Desenha conexões
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(0, 102, 255, ${0.25 - dist / 130 * 0.25})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    // Desenha pontos
+                    particles.forEach(p => {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color;
+                        ctx.fill();
+
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        if (p.x < 0 || p.x > width) p.vx *= -1;
+                        if (p.y < 0 || p.y > height) p.vy *= -1;
+                    });
+
+                    requestAnimationFrame(animateCanvas);
+                }
+
+                animateCanvas();
+            }
+        });
+
+        function handleHeroQuickSubmit(e) {
+            e.preventDefault();
+            const device = document.getElementById('heroDevice').value;
+            const issue = document.getElementById('heroIssue').value;
+            const name = document.getElementById('heroName').value;
+
+            const text = `Ol%C3%A1!%20Meu%20nome%20%C3%A9%20*${encodeURIComponent(name)}*.%0A*Aparelho:*%20${encodeURIComponent(device)}%0A*Problema:*%20${encodeURIComponent(issue)}%0AGostaria%20de%20receber%20um%20or%C3%A7amento%20da%20Conecta%20Cell.`;
+            const waUrl = `https://wa.me/5582991260066?text=${text}`;
+
+            document.getElementById('modalMessage').innerHTML = `Obrigado, <strong>${name}</strong>! Estamos abrindo seu WhatsApp para enviar o orçamento do seu <strong>${device}</strong>.`;
+            const modal = new bootstrap.Modal(document.getElementById('successModal'));
+            modal.show();
+
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 1800);
+        }
+
+        function handleCaptureForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('leadName').value;
+            const phone = document.getElementById('leadPhone').value;
+            const device = document.getElementById('leadDevice').value;
+            const model = document.getElementById('leadModel').value || 'Não informado';
+            const description = document.getElementById('leadDescription').value || 'Sem detalhes adicionais';
+            const levaTraz = document.getElementById('leadLevaTraz').checked ? 'Sim' : 'Não';
+
+            const text = `*NOVO AGENDAMENTO DE CLIENTE SITE*%0A%0A*Nome:* ${encodeURIComponent(name)}%0A*Telefone:* ${encodeURIComponent(phone)}%0A*Dispositivo:* ${encodeURIComponent(device)}%0A*Modelo:* ${encodeURIComponent(model)}%0A*Problema:* ${encodeURIComponent(description)}%0A*Deseja Leva e Traz?:* ${levaTraz}`;
+            const waUrl = `https://wa.me/5582991260066?text=${text}`;
+
+            document.getElementById('modalMessage').innerHTML = `Agendamento pré-registrado com sucesso, <strong>${name}</strong>! Clique em prosseguir para confirmar com nossa equipe no WhatsApp.`;
+            const modal = new bootstrap.Modal(document.getElementById('successModal'));
+            modal.show();
+
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 1800);
+        }
+    </script>
+</body>
+</html>
